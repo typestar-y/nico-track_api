@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class NicoTrackAdvice {
     @ExceptionHandler({NicoTrackException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public void handleNicoTrackException() {
+    public String handleNicoTrackException(NicoTrackException e) {
+        return e.getMessage();
     }
 }
