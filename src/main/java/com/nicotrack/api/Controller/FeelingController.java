@@ -35,7 +35,7 @@ public class FeelingController {
     public SearchFeelingsResponse registerFeeling() {
         List<Feeling> feelings = searchFeelingsService.execute();
         return new SearchFeelingsResponse(feelings.stream()
-                .map(feeling -> new SearchFeelingsResponse.Feeling(feeling.getDate(), feeling.getType()))
+                .map(feeling -> new SearchFeelingsResponse.Feeling(feeling.getDate(), feeling.getType(), feeling.getUser().getName()))
                 .collect(Collectors.toList()));
     }
 }

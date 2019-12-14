@@ -17,10 +17,6 @@ public class SearchFeelingsResponse {
     public static class Feeling {
         private final Date date;
         private final int type;
-
-        public Feeling(Date date, int type) {
-            this.date = date;
-            this.type = type;
-        }
+        private final String userName;
     }
 }
