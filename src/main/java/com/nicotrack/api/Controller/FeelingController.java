@@ -3,9 +3,11 @@ package com.nicotrack.api.Controller;
 import com.nicotrack.api.Controller.request.RegisterFeelingRequest;
 import com.nicotrack.api.Controller.response.SearchFeelingsResponse;
 import com.nicotrack.api.Entity.Feeling;
+import com.nicotrack.api.Exception.NicoTrackException;
 import com.nicotrack.api.Service.RegisterFeelingService;
 import com.nicotrack.api.Service.SearchFeelingsService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +19,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin
 public class FeelingController {
 
     private final RegisterFeelingService registerFeelingService;
@@ -24,8 +27,8 @@ public class FeelingController {
 
 
     @PostMapping("/feelings")
-    public void registerFeeling(@Valid @RequestBody RegisterFeelingRequest request) {
-        registerFeelingService.execute(request.generateFeeling());
+    public void registerFeeling(@Valid @RequestBody RegisterFeelingRequest request) throws NicoTrackException {
+        registerFeelingService.execute(request.generateFeeling(), request.getUser());
     }
 
     @GetMapping("/feelings")

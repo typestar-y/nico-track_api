@@ -15,6 +15,9 @@ public class RegisterFeelingRequest {
     @NotNull
     private Integer type;
 
+    @NotNull
+    private String user;
+
     public Feeling generateFeeling() {
         return new Feeling(this.date, this.type);
     }
